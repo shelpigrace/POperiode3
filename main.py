@@ -1,4 +1,4 @@
-# Kirill 5va en mijn leuk spel! Ganzenbord!
+# PO periode 3 met twee amsterdammers en SLI, BITCHESSSSSSSSSSSSSSSSS
 import pygame, random  # imorteren van de pygame en random libraries
 
 
