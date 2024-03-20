@@ -17,7 +17,7 @@ huidige_speler_beurt = 0
 worp = 0
 
 # bord afbeelding
-bord = pygame.image.load("fotos/leipe levensweg.png")
+bord = pygame.image.load("fotos/leipe levensweg4.0.png")
 
 # -------- Pygame initialisatie --------
 
