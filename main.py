@@ -8,7 +8,7 @@ import pygame, random  # imorteren van de pygame en random libraries
 vakjes = vakjes = [[870,460], [870,380], [870, 315], [870,250], [870, 180], [870, 110],[795,70], [710,70], [710,142], [710,210], [710,280], [710, 348], [710, 415], [710, 478], [639,475], [562,475], [486, 475], [410, 475],[336, 475], [261, 475], [188, 475], [117,475], [70,410], [65,343], [65,270],[65, 206], [65,136], [86,68], [166,67], [240,67], [315,67],[387,67], [465,67], [509,144], [557,214], [570,285], [558,357],[475,382], [394,392], [305,396], [226,389], [156,319], [153,244],[163,174], [250,147], [340,150], [422,183], [453,260], [373,305],[270,285], [324,229]] # laatste coordinaat is van kleine vakje, moet nog worden aangepast!! # 
 
 # pion posities
-posities = [0,0]
+posities = [0,0,0]
 
 # wie is aan de beurt?
 huidige_speler_beurt = 0
@@ -30,7 +30,7 @@ WINDOW_SIZE = [960, 540]
 screen = pygame.display.set_mode(WINDOW_SIZE)
 
 # Titel van het spelscherm instellen:
-pygame.display.set_caption("Wt's fabuleuze bordspel")
+pygame.display.set_caption("Leuke Levensweg langs... de weg")
 
 # Deze boolean laat ons spel straks in een oneindige loop lopen, totdat er op 
 # het kruisje wordt geklikt om af te sluiten (deze zet dan done op True)
@@ -41,7 +41,7 @@ done = False
 clock = pygame.time.Clock()
 
 # spelers
-spelers = ['Speler 1', 'Speler 2']
+spelers = ['Speler 1', 'Speler 2', 'Speler 3']
 
 
 
@@ -65,17 +65,17 @@ while not done:
 
                 # is de pion op of voorbij het laatste vakje? Zal valt hij van het bord af!
                 # Zet hem dan precies op het laatste vakje om dat te voorkomen:
-                if posities[huidige_speler_beurt] >= 63:
-                    posities[huidige_speler_beurt] = 63
+                if posities[huidige_speler_beurt] >= 50:
+                    posities[huidige_speler_beurt] = 50
                 # heeft de speler nog niet gewonnen? Ga dan de beurt door naar de vol
                 else:
                 # beurt wisselen
-                 huidige_speler_beurt = (huidige_speler_beurt + 1) % 2 
+                 huidige_speler_beurt = (huidige_speler_beurt + 1) % 3 
 
             elif event.key == pygame.K_BACKSPACE: #backspace
                 print("Knop: Backspace")
                 huidige_speler_beurt = 0  # Terug naar speler 0
-                posities = [0, 0]  # Reset spelerposities naar begin
+                posities = [0, 0, 0]  # Reset spelerposities naar begin
     # --- Teken de graphics voor de volgende schermupdate (nog buiten beeld) ---
   
     screen.fill((255,255,255)) # begin met een witte achtergrond 
@@ -92,7 +92,13 @@ while not done:
     speler1_y = vakjes[posities[1]][1] + 5; # y-cordinaten pion speler 1
     kleur1 = (0,0,255) # blauwe pion
     pygame.draw.circle(screen, kleur1, (speler1_x, speler1_y), 10) # teken cirkel als pion speler 1
+    speler2_x = vakjes[posities[2]][0] + 10; # x-cordinaten pion speler 2
+    speler2_y = vakjes[posities[2]][1] + 10; # y-cordinaten pion speler 2
+    kleur1 = (255,0,0) # rode pion
+    pygame.draw.circle(screen, kleur1, (speler2_x, speler2_y), 10) # teken cirkel als pion speler 2
+
   
+
     # We tekenen wat tekst op het scherm
     # Kies het standaardfont en een lettergrootte (30):
     myfont = pygame.font.SysFont("None", 30)
