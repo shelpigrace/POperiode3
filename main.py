@@ -72,6 +72,10 @@ while not done:
                 # Zet hem dan precies op het laatste vakje om dat te voorkomen:
                 if posities[huidige_speler_beurt] >= 50:
                     posities[huidige_speler_beurt] = 50
+                    if huidige_speler_beurt < 3:
+                      huidige_speler_beurt = (huidige_speler_beurt + 1) % 3
+                    else:
+                      huidige_speler_beurt = huidige_speler_beurt
                 # heeft de speler nog niet gewonnen? Ga dan de beurt door naar de vol
                 else:
                 # beurt wisselen
