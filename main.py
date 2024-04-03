@@ -65,23 +65,30 @@ while not done:
             if event.key == pygame.K_SPACE: # spatie
                 print("Knop: Spatie")
 
-                worp = random.randint(1,6) #kies een random getal tussen 1 en 6 als dobbelsteenworp
+                worp = random.randint(1,10) #kies een random getal tussen 1 en 6 als dobbelsteenworp
                 posities[huidige_speler_beurt] += worp # verzet de pion die op dit moment aan de beurt is
 
                 # is de pion op of voorbij het laatste vakje? Zal valt hij van het bord af!
                 # Zet hem dan precies op het laatste vakje om dat te voorkomen:
-                if posities[huidige_speler_beurt] >= 50:
+                if posities[huidige_speler_beurt] >= 49:
                     posities[huidige_speler_beurt] = 50
+
                     if huidige_speler_beurt < 3:
                       huidige_speler_beurt = (huidige_speler_beurt + 1) % 3
                     else:
                       huidige_speler_beurt = huidige_speler_beurt
+
+                  
+
                 # heeft de speler nog niet gewonnen? Ga dan de beurt door naar de vol
                 else:
-                # beurt wisselen
-                 huidige_speler_beurt = (huidige_speler_beurt + 1) % 3 
+                # beurt wisselen    
+                  huidige_speler_beurt = (huidige_speler_beurt + 1) % 3 
+
+                  
 
             elif event.key == pygame.K_BACKSPACE: #backspace
+
                 print("Knop: Backspace")
                 huidige_speler_beurt = 0  # Terug naar speler 0
                 posities = [0, 0, 0]  # Reset spelerposities naar begin
@@ -96,6 +103,15 @@ while not done:
               tkinter.messagebox.showinfo("status van het spel", "Welkom bij leip en leven")
 
               top.destroy()
+
+              print("Knop: Backspace")
+              huidige_speler_beurt = 0  # Terug naar speler 0
+              posities = [0, 0, 0]  # Reset spelerposities naar begin
+
+
+        
+
+
 
     # --- Teken de graphics voor de volgende schermupdate (nog buiten beeld) ---
   
@@ -115,7 +131,7 @@ while not done:
     pygame.draw.circle(screen, kleur1, (speler1_x, speler1_y), 10) # teken cirkel als pion speler 1
     speler2_x = vakjes[posities[2]][0] + 10; # x-cordinaten pion speler 2
     speler2_y = vakjes[posities[2]][1] + 10; # y-cordinaten pion speler 2
-    kleur1 = (255,0,0) # rode pion
+    kleur1 = (252, 186, 3) # rode pion
     pygame.draw.circle(screen, kleur1, (speler2_x, speler2_y), 10) # teken cirkel als pion speler 2
 
   
@@ -133,6 +149,7 @@ while not done:
     text = "Aan de beurt: " + str(huidige_speler_beurt + 1)
     label = myfont.render(text, 1, (0,0,0))
     screen.blit(label, (520,80))
+
 
     # Pop-up aantal kinderen op het scherm:
     
