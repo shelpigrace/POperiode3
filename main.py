@@ -106,12 +106,12 @@ while not done:
     # Teken de laatste worp op het scherm:
     text = "Laatste worp: " + str(worp)
     label = myfont.render(text, 1, (0,0,0))
-    screen.blit(label, (350,470))
+    screen.blit(label, (520,50))
 
     # Teken de speler die aan de beurt is op het scherm:
     text = "Aan de beurt: " + str(huidige_speler_beurt + 1)
     label = myfont.render(text, 1, (0,0,0))
-    screen.blit(label, (350,495))
+    screen.blit(label, (520,80))
 
     # --- Update het beeldscherm met de nieuwe graphics ---
 
