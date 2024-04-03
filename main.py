@@ -1,6 +1,7 @@
 # PO periode 3 met twee amsterdammers en SLI, BITCHESSSSSSSSSSSSSSSSS
 import pygame, random  # imorteren van de pygame en random libraries
-
+import tkinter
+from tkinter import messagebox
 
 # -------- Globale variabelen --------
 
@@ -16,8 +17,12 @@ huidige_speler_beurt = 0
 # dobbelsteenworp:
 worp = 0
 
+# aantal kinderen
+kinderen = 0
+
 # bord afbeelding
 bord = pygame.image.load("fotos/leipe levensweg4.0.png")
+
 
 # -------- Pygame initialisatie --------
 
@@ -76,6 +81,18 @@ while not done:
                 print("Knop: Backspace")
                 huidige_speler_beurt = 0  # Terug naar speler 0
                 posities = [0, 0, 0]  # Reset spelerposities naar begin
+
+
+          # venster voor tkinter
+
+            elif event.key == pygame.K_DOWN:
+              print("Knop: omlaag.")
+              top = tkinter.Tk()
+              top.withdraw()
+              tkinter.messagebox.showinfo("status van het spel", "Welkom bij leip en leven")
+
+              top.destroy()
+
     # --- Teken de graphics voor de volgende schermupdate (nog buiten beeld) ---
   
     screen.fill((255,255,255)) # begin met een witte achtergrond 
@@ -113,6 +130,9 @@ while not done:
     label = myfont.render(text, 1, (0,0,0))
     screen.blit(label, (520,80))
 
+    # Pop-up aantal kinderen op het scherm:
+    
+  
     # --- Update het beeldscherm met de nieuwe graphics ---
 
     clock.tick(60) # Zet de limiet op 60 frames per seconde
