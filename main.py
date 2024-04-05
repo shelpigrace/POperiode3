@@ -104,9 +104,7 @@ while not done:
 
               top.destroy()
 
-              print("Knop: Backspace")
-              huidige_speler_beurt = 0  # Terug naar speler 0
-              posities = [0, 0, 0]  # Reset spelerposities naar begin
+            
 
 
         
