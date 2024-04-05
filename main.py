@@ -8,6 +8,7 @@ from tkinter import messagebox
 # coordinaten van de vakjes:
 vakjes = vakjes = [[870,460], [870,380], [870, 315], [870,250], [870, 180], [870, 110],[795,70], [710,70], [710,142], [710,210], [710,280], [710, 348], [710, 415], [710, 478], [639,475], [562,475], [486, 475], [410, 475],[336, 475], [261, 475], [188, 475], [117,475], [70,410], [65,343], [65,270],[65, 206], [65,136], [86,68], [166,67], [240,67], [315,67],[387,67], [465,67], [509,144], [557,214], [570,285], [558,357],[475,382], [394,392], [305,396], [226,389], [156,319], [153,244],[163,174], [250,147], [340,150], [422,183], [453,260], [373,305],[270,285], [324,229]] # laatste coordinaat is van kleine vakje, moet nog worden aangepast!! 
 
+
 # pion posities
 posities = [0,0,0]
 
@@ -48,6 +49,8 @@ clock = pygame.time.Clock()
 # spelers
 spelers = ['Speler 1', 'Speler 2', 'Speler 3']
 
+#spelers stutus
+textVerzekering0 = "Verzekeringen Speler Groen: " 
 
 
 # -------- Hoofdloop van het programma --------
@@ -60,6 +63,10 @@ while not done:
 
         if event.type == pygame.QUIT: # Gebeurtenis: het kruisje is aangeklikt
             done = True # Het spel moet eindigen dus we zetten done op True, zodat de loop straks stopt
+
+
+
+      
         elif event.type == pygame.KEYDOWN:
             # Er is een toets ingedrukt, we kijken welke en ondernemen actie
             if event.key == pygame.K_SPACE: # spatie
@@ -68,6 +75,21 @@ while not done:
                 worp = random.randint(1,10) #kies een random getal tussen 1 en 6 als dobbelsteenworp
                 posities[huidige_speler_beurt] += worp # verzet de pion die op dit moment aan de beurt is
 
+                #pop-up voor de verzekeringen
+                if posities[huidige_speler_beurt] == 4:
+                  textVerzekering0 = textVerzekering0 + (" levens verzekering")
+                elif posities[huidige_speler_beurt] == 11:
+                  textVerzekering0 = textVerzekering0 + (" reis verzekering")
+                elif posities[huidige_speler_beurt] == 20:
+                  textVerzekering0 = textVerzekering0 + (" Auto verzekering")
+                elif posities[huidige_speler_beurt] == 26:
+                  textVerzekering0 = textVerzekering0 + (" Brand verzekering")
+                elif posities[huidige_speler_beurt] == 33:
+                  textVerzekering0 = textVerzekering0 + (" inboedel verzekering")
+                elif posities[huidige_speler_beurt] == 38:
+                  textVerzekering0 = textVerzekering0 + (" overlijdensrisico verzekering")
+
+              
                 # is de pion op of voorbij het laatste vakje? Zal valt hij van het bord af!
                 # Zet hem dan precies op het laatste vakje om dat te voorkomen:
                 if posities[huidige_speler_beurt] >= 49:
@@ -100,12 +122,9 @@ while not done:
               print("Knop: omlaag.")
               top = tkinter.Tk()
               top.withdraw()
-              tkinter.messagebox.showinfo("status van het spel", "Welkom bij leip en leven")
+              tkinter.messagebox.showinfo("status van het spel", textVerzekering0)
 
-              top.destroy()
-
-            
-
+              top.destroy
 
         
 
@@ -148,6 +167,8 @@ while not done:
     label = myfont.render(text, 1, (0,0,0))
     screen.blit(label, (520,80))
 
+
+  
 
     # Pop-up aantal kinderen op het scherm:
     
