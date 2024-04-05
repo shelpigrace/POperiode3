@@ -4,10 +4,11 @@ import tkinter
 from tkinter import messagebox
 
 # -------- Globale variabelen --------
-
+salarissen = [3000, 3000, 3000]
 # coordinaten van de vakjes:
-vakjes = vakjes = [[870,460], [870,380], [870, 315], [870,250], [870, 180], [870, 110],[795,70], [710,70], [710,142], [710,210], [710,280], [710, 348], [710, 415], [710, 478], [639,475], [562,475], [486, 475], [410, 475],[336, 475], [261, 475], [188, 475], [117,475], [70,410], [65,343], [65,270],[65, 206], [65,136], [86,68], [166,67], [240,67], [315,67],[387,67], [465,67], [509,144], [557,214], [570,285], [558,357],[475,382], [394,392], [305,396], [226,389], [156,319], [153,244],[163,174], [250,147], [340,150], [422,183], [453,260], [373,305],[270,285], [324,229]] # laatste coordinaat is van kleine vakje, moet nog worden aangepast!! 
+vakjes = [[870,460], [870,380], [870, 315], [870,250], [870, 180], [870, 110],[795,70], [710,70], [710,142], [710,210], [710,280], [710, 348], [710, 415], [710, 478], [639,475], [562,475], [486, 475], [410, 475],[336, 475], [261, 475], [188, 475], [117,475], [70,410], [65,343], [65,270],[65, 206], [65,136], [86,68], [166,67], [240,67], [315,67],[387,67], [465,67], [509,144], [557,214], [570,285], [558,357],[475,382], [394,392], [305,396], [226,389], [156,319], [153,244],[163,174], [250,147], [340,150], [422,183], [453,260], [373,305],[270,285], [324,229]] # laatste coordinaat is van kleine vakje, moet nog worden aangepast!! 
 
+salaris_positie = [3,12,17,21,24,29,35,40,45]
 # pion posities
 posities = [0,0,0]
 
@@ -68,6 +69,9 @@ while not done:
                 worp = random.randint(1,6) #kies een random getal tussen 1 en 6 als dobbelsteenworp
                 posities[huidige_speler_beurt] += worp # verzet de pion die op dit moment aan de beurt is
 
+                if posities[huidige_speler_beurt] in salaris_positie:
+                  salarissen[huidige_speler_beurt] += 200  # Speler krijgt 200 euro
+                  print("Speler kreeg een salaris van 200. Nieuwe salaris: ", + int(salarissen[huidige_speler_beurt]))
                 # is de pion op of voorbij het laatste vakje? Zal valt hij van het bord af!
                 # Zet hem dan precies op het laatste vakje om dat te voorkomen:
                 if posities[huidige_speler_beurt] >= 50:
