@@ -9,6 +9,7 @@ salarissen = [3000, 3000, 3000]
 vakjes = [[870,460], [870,380], [870, 315], [870,250], [870, 180], [870, 110],[795,70], [710,70], [710,142], [710,210], [710,280], [710, 348], [710, 415], [710, 478], [639,475], [562,475], [486, 475], [410, 475],[336, 475], [261, 475], [188, 475], [117,475], [70,410], [65,343], [65,270],[65, 206], [65,136], [86,68], [166,67], [240,67], [315,67],[387,67], [465,67], [509,144], [557,214], [570,285], [558,357],[475,382], [394,392], [305,396], [226,389], [156,319], [153,244],[163,174], [250,147], [340,150], [422,183], [453,260], [373,305],[270,285], [324,229]] # laatste coordinaat is van kleine vakje, moet nog worden aangepast!! 
 
 salaris_positie = [3,12,17,21,24,29,35,40,45]
+
 # pion posities
 posities = [0,0,0]
 
@@ -49,6 +50,8 @@ clock = pygame.time.Clock()
 # spelers
 spelers = ['Speler 1', 'Speler 2', 'Speler 3']
 
+#spelers stutus
+textVerzekering0 = "Verzekeringen Speler Groen: " 
 
 
 # -------- Hoofdloop van het programma --------
@@ -61,31 +64,62 @@ while not done:
 
         if event.type == pygame.QUIT: # Gebeurtenis: het kruisje is aangeklikt
             done = True # Het spel moet eindigen dus we zetten done op True, zodat de loop straks stopt
+
+
+
+      
         elif event.type == pygame.KEYDOWN:
             # Er is een toets ingedrukt, we kijken welke en ondernemen actie
             if event.key == pygame.K_SPACE: # spatie
                 print("Knop: Spatie")
 
-                worp = random.randint(1,6) #kies een random getal tussen 1 en 6 als dobbelsteenworp
+                worp = random.randint(1,10) #kies een random getal tussen 1 en 6 als dobbelsteenworp
                 posities[huidige_speler_beurt] += worp # verzet de pion die op dit moment aan de beurt is
+
 
                 if posities[huidige_speler_beurt] in salaris_positie:
                   salarissen[huidige_speler_beurt] += 200  # Speler krijgt 200 euro
                   print("Speler kreeg een salaris van 200. Nieuwe salaris: ", + int(salarissen[huidige_speler_beurt]))
+
+
+              
+                #pop-up voor de verzekeringen
+                if posities[huidige_speler_beurt] == 4:
+                  textVerzekering0 = textVerzekering0 + (" levens verzekering")
+                elif posities[huidige_speler_beurt] == 11:
+                  textVerzekering0 = textVerzekering0 + (" reis verzekering")
+                elif posities[huidige_speler_beurt] == 20:
+                  textVerzekering0 = textVerzekering0 + (" Auto verzekering")
+                elif posities[huidige_speler_beurt] == 26:
+                  textVerzekering0 = textVerzekering0 + (" Brand verzekering")
+                elif posities[huidige_speler_beurt] == 33:
+                  textVerzekering0 = textVerzekering0 + (" inboedel verzekering")
+                elif posities[huidige_speler_beurt] == 38:
+                  textVerzekering0 = textVerzekering0 + (" overlijdensrisico verzekering")
+
+              
+
                 # is de pion op of voorbij het laatste vakje? Zal valt hij van het bord af!
                 # Zet hem dan precies op het laatste vakje om dat te voorkomen:
-                if posities[huidige_speler_beurt] >= 50:
+                if posities[huidige_speler_beurt] >= 49:
                     posities[huidige_speler_beurt] = 50
+
                     if huidige_speler_beurt < 3:
                       huidige_speler_beurt = (huidige_speler_beurt + 1) % 3
                     else:
                       huidige_speler_beurt = huidige_speler_beurt
+
+                  
+
                 # heeft de speler nog niet gewonnen? Ga dan de beurt door naar de vol
                 else:
-                # beurt wisselen
-                 huidige_speler_beurt = (huidige_speler_beurt + 1) % 3 
+                # beurt wisselen    
+                  huidige_speler_beurt = (huidige_speler_beurt + 1) % 3 
+
+                  
 
             elif event.key == pygame.K_BACKSPACE: #backspace
+
                 print("Knop: Backspace")
                 huidige_speler_beurt = 0  # Terug naar speler 0
                 posities = [0, 0, 0]  # Reset spelerposities naar begin
@@ -97,9 +131,13 @@ while not done:
               print("Knop: omlaag.")
               top = tkinter.Tk()
               top.withdraw()
-              tkinter.messagebox.showinfo("status van het spel", "Welkom bij leip en leven")
+              tkinter.messagebox.showinfo("status van het spel", textVerzekering0)
 
-              top.destroy()
+              top.destroy
+
+        
+
+
 
     # --- Teken de graphics voor de volgende schermupdate (nog buiten beeld) ---
   
@@ -119,7 +157,7 @@ while not done:
     pygame.draw.circle(screen, kleur1, (speler1_x, speler1_y), 10) # teken cirkel als pion speler 1
     speler2_x = vakjes[posities[2]][0] + 10; # x-cordinaten pion speler 2
     speler2_y = vakjes[posities[2]][1] + 10; # y-cordinaten pion speler 2
-    kleur1 = (255,0,0) # rode pion
+    kleur1 = (252, 186, 3) # rode pion
     pygame.draw.circle(screen, kleur1, (speler2_x, speler2_y), 10) # teken cirkel als pion speler 2
 
   
@@ -137,6 +175,9 @@ while not done:
     text = "Aan de beurt: " + str(huidige_speler_beurt + 1)
     label = myfont.render(text, 1, (0,0,0))
     screen.blit(label, (520,80))
+
+
+  
 
     # Pop-up aantal kinderen op het scherm:
     
