@@ -5,13 +5,21 @@ from tkinter import messagebox
 
 # -------- Globale variabelen --------
 salarissen = [3000, 3000, 3000]
+
+kinderen = [0, 0, 0]
+
 verzekeringen = ["Verzekeringen Groen: ", "Verzekeringen Blauw: ", "Verzekeringen Geel: "]
+
 # coordinaten van de vakjes:
 vakjes = [[870,460], [870,380], [870, 315], [870,250], [870, 180], [870, 110],[795,70], [710,70], [710,142], [710,210], [710,280], [710, 348], [710, 415], [710, 478], [639,475], [562,475], [486, 475], [410, 475],[336, 475], [261, 475], [188, 475], [117,475], [70,410], [65,343], [65,270],[65, 206], [65,136], [86,68], [166,67], [240,67], [315,67],[387,67], [465,67], [509,144], [557,214], [570,285], [558,357],[475,382], [394,392], [305,396], [226,389], [156,319], [153,244],[163,174], [250,147], [340,150], [422,183], [453,260], [373,305],[270,285], [324,229]] # laatste coordinaat is van kleine vakje, moet nog worden aangepast!! 
 
 salaris_positie = [3,12,17,21,24,29,35,40,45]
 
 verzekeringPositie = [4,11,20,26,33,38]
+
+Kinderen_positie = [5,7,10,14,16]
+Tweeling_positie = [23]
+
 # pion posities
 posities = [0,0,0]
 
@@ -190,20 +198,11 @@ while not done:
     screen.blit(label, (520,80))
 
 
-
-  
-
-    # Pop-up aantal kinderen op het scherm:
     
     # --- Update het beeldscherm met de nieuwe graphics ---
 
     clock.tick(60) # Zet de limiet op 60 frames per seconde
     pygame.display.flip() # ververs het beeldscherm met de nieuwe versie van het scherm
-    # --- Update het  beeldscherm met de nieuwe graphics ---
-
-    clock.tick(60) # Zet de limiet op 60 frames per seconde
-    pygame.display.flip() # verwers het beeldscherm met de nieuwe versie van het scherm
-
 
 # -------- Afsluiting --------
 pygame.quit() #dit sluit pygame en sluit het gamevenster
