@@ -19,9 +19,6 @@ huidige_speler_beurt = 0
 # dobbelsteenworp:
 worp = 0
 
-# aantal kinderen
-kinderen = 0
-
 # bord afbeelding
 bord = pygame.image.load("fotos/leipe levensweg4.0.png")
 
@@ -77,6 +74,7 @@ while not done:
                 posities[huidige_speler_beurt] += worp # verzet de pion die op dit moment aan de beurt is
 
 
+
                 if posities[huidige_speler_beurt] in salaris_positie:
                   salarissen[huidige_speler_beurt] += 200  # Speler krijgt 200 euro
                   print("Speler kreeg een salaris van 200. Nieuwe salaris: ", + int(salarissen[huidige_speler_beurt]))
@@ -98,6 +96,7 @@ while not done:
                   textVerzekering0 = textVerzekering0 + (" overlijdensrisico verzekering")
 
               
+
 
                 # is de pion op of voorbij het laatste vakje? Zal valt hij van het bord af!
                 # Zet hem dan precies op het laatste vakje om dat te voorkomen:
@@ -177,11 +176,11 @@ while not done:
     screen.blit(label, (520,80))
 
 
+
   
 
     # Pop-up aantal kinderen op het scherm:
     
-  
     # --- Update het beeldscherm met de nieuwe graphics ---
 
     clock.tick(60) # Zet de limiet op 60 frames per seconde
