@@ -5,11 +5,13 @@ from tkinter import messagebox
 
 # -------- Globale variabelen --------
 salarissen = [3000, 3000, 3000]
+verzekeringen = ["Verzekeringen Groen: ", "Verzekeringen Blauw: ", "Verzekeringen Geel: "]
 # coordinaten van de vakjes:
 vakjes = [[870,460], [870,380], [870, 315], [870,250], [870, 180], [870, 110],[795,70], [710,70], [710,142], [710,210], [710,280], [710, 348], [710, 415], [710, 478], [639,475], [562,475], [486, 475], [410, 475],[336, 475], [261, 475], [188, 475], [117,475], [70,410], [65,343], [65,270],[65, 206], [65,136], [86,68], [166,67], [240,67], [315,67],[387,67], [465,67], [509,144], [557,214], [570,285], [558,357],[475,382], [394,392], [305,396], [226,389], [156,319], [153,244],[163,174], [250,147], [340,150], [422,183], [453,260], [373,305],[270,285], [324,229]] # laatste coordinaat is van kleine vakje, moet nog worden aangepast!! 
 
 salaris_positie = [3,12,17,21,24,29,35,40,45]
 
+verzekeringPositie = [4,11,20,26,33,38]
 # pion posities
 posities = [0,0,0]
 
@@ -48,7 +50,7 @@ clock = pygame.time.Clock()
 spelers = ['Speler 1', 'Speler 2', 'Speler 3']
 
 #spelers stutus
-textVerzekering0 = "Verzekeringen Speler Groen: " 
+
 
 
 # -------- Hoofdloop van het programma --------
@@ -69,31 +71,44 @@ while not done:
             # Er is een toets ingedrukt, we kijken welke en ondernemen actie
             if event.key == pygame.K_SPACE: # spatie
                 print("Knop: Spatie")
-
                 worp = random.randint(1,10) #kies een random getal tussen 1 en 6 als dobbelsteenworp
                 posities[huidige_speler_beurt] += worp # verzet de pion die op dit moment aan de beurt is
 
 
 
                 if posities[huidige_speler_beurt] in salaris_positie:
-                  salarissen[huidige_speler_beurt] += 200  # Speler krijgt 200 euro
-                  print("Speler kreeg een salaris van 200. Nieuwe salaris: ", + int(salarissen[huidige_speler_beurt]))
+                  salarissen[huidige_speler_beurt] += 2000  # Speler krijgt 2000 euro
+                  print("Speler", huidige_speler_beurt, " kreeg een salaris van 2000. Nieuwe salaris: ", + int(salarissen[huidige_speler_beurt]))
 
 
-              
+
+                
                 #pop-up voor de verzekeringen
-                if posities[huidige_speler_beurt] == 4:
-                  textVerzekering0 = textVerzekering0 + (" levens verzekering")
-                elif posities[huidige_speler_beurt] == 11:
-                  textVerzekering0 = textVerzekering0 + (" reis verzekering")
-                elif posities[huidige_speler_beurt] == 20:
-                  textVerzekering0 = textVerzekering0 + (" Auto verzekering")
-                elif posities[huidige_speler_beurt] == 26:
-                  textVerzekering0 = textVerzekering0 + (" Brand verzekering")
-                elif posities[huidige_speler_beurt] == 33:
-                  textVerzekering0 = textVerzekering0 + (" inboedel verzekering")
-                elif posities[huidige_speler_beurt] == 38:
-                  textVerzekering0 = textVerzekering0 + (" overlijdensrisico verzekering")
+                if posities[huidige_speler_beurt] in verzekeringPositie:
+                  if posities[huidige_speler_beurt] == 4:
+                    verzekeringen.insert(huidige_speler_beurt +1, " levens verzekering")
+                    salarissen[huidige_speler_beurt] -= 750
+                    print("Speler", huidige_speler_beurt, " heeft een levens verzekering en 750 euro minder. ", "Nieuwe salaris: ", + int(salarissen[huidige_speler_beurt]))
+                  elif posities[huidige_speler_beurt] == 11:
+                    verzekeringen[huidige_speler_beurt] + (" reis verzekering")
+                    salarissen[huidige_speler_beurt] -= 500
+                    print("Speler", huidige_speler_beurt, " heeft een reis verzekering en 500 euro minder. ", "Nieuwe salaris: ", + int(salarissen[huidige_speler_beurt]))
+                  elif posities[huidige_speler_beurt] == 20:
+                    verzekeringen[huidige_speler_beurt] + (" Auto verzekering")
+                    salarissen[huidige_speler_beurt] -= 1000
+                    print("Speler", huidige_speler_beurt, " heeft een auto verzekering en 1000 euro minder. ", "Nieuwe salaris: ", + int(salarissen[huidige_speler_beurt]))
+                  elif posities[huidige_speler_beurt] == 26:
+                    verzekeringen[huidige_speler_beurt] + (" Brand verzekering")
+                    salarissen[huidige_speler_beurt] -= 1200
+                    print("Speler", huidige_speler_beurt, " heeft een brand verzekering en 1200 euro minder. ", "Nieuwe salaris: ", + int(salarissen[huidige_speler_beurt]))
+                  elif posities[huidige_speler_beurt] == 33:
+                    verzekeringen[huidige_speler_beurt] + (" inboedel verzekering")
+                    salarissen[huidige_speler_beurt] -= 1350
+                    print("Speler", huidige_speler_beurt, " heeft een inboedel verekering en 1350 euro minder. ", "Nieuwe salaris: ", + int(saalarissen[huidige_speler_beurt]))
+                  elif posities[huidige_speler_beurt] == 38:
+                    verzekeringen[huidige_speler_beurt] + (" overlijdensrisico verzekering")
+                    salarissen[huidige_speler_beurt] -= 680
+                    print("Speler", huidige_speler_beurt, " heeft een overlijdings verzekering en 680 euro minder. ", "Nieuwe salaris: ", + int(salarissen[huidige_speler_beurt]))
 
               
 
@@ -130,8 +145,7 @@ while not done:
               print("Knop: omlaag.")
               top = tkinter.Tk()
               top.withdraw()
-              tkinter.messagebox.showinfo("status van het spel", textVerzekering0)
-
+              tkinter.messagebox.showinfo("status van het spel", salarissen + verzekeringen, )
               top.destroy
 
         
@@ -156,7 +170,7 @@ while not done:
     pygame.draw.circle(screen, kleur1, (speler1_x, speler1_y), 10) # teken cirkel als pion speler 1
     speler2_x = vakjes[posities[2]][0] + 10; # x-cordinaten pion speler 2
     speler2_y = vakjes[posities[2]][1] + 10; # y-cordinaten pion speler 2
-    kleur1 = (252, 186, 3) # rode pion
+    kleur1 = (252, 186, 3) # Gele (isch) pion
     pygame.draw.circle(screen, kleur1, (speler2_x, speler2_y), 10) # teken cirkel als pion speler 2
 
   
