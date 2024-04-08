@@ -1,4 +1,5 @@
 # PO periode 3 met twee amsterdammers en SLI, BITCHESSSSSSSSSSSSSSSSS
+from os import killpg
 import pygame, random  # imorteren van de pygame en random libraries
 import tkinter
 from tkinter import messagebox
@@ -17,8 +18,8 @@ salaris_positie = [3,12,17,21,24,29,35,40,45]
 
 verzekeringPositie = [4,11,20,26,33,38]
 
-Kinderen_positie = [5,7,10,14,16]
-Tweeling_positie = [23]
+kinderen_positie = [5,7,10,14,16]
+tweeling_positie = [23]
 
 # pion posities
 posities = [0,0,0]
@@ -88,9 +89,14 @@ while not done:
                   salarissen[huidige_speler_beurt] += 2000  # Speler krijgt 2000 euro
                   print("Speler", huidige_speler_beurt, " kreeg een salaris van 2000. Nieuwe salaris: ", + int(salarissen[huidige_speler_beurt]))
 
+                if posities[huidige_speler_beurt] in kinderen_positie:
+                  kinderen[huidige_speler_beurt] += 1 
+                  print ("Speler", huidige_speler_beurt,"heeft een kind gekregen. Aantal kinderen:" , + int(kinderen[huidige_speler_beurt]))
 
-
-                
+                if posities[huidige_speler_beurt] in tweeling_positie:
+                  kinderen[huidige_speler_beurt] += 2
+                  print ("Speler", huidige_speler_beurt,"heeft een tweeling gekregen. Aantal kinderen:" , + int(kinderen[huidige_speler_beurt]))
+              
                 #pop-up voor de verzekeringen
                 if posities[huidige_speler_beurt] in verzekeringPositie:
                   if posities[huidige_speler_beurt] == 4:
@@ -153,7 +159,7 @@ while not done:
               print("Knop: omlaag.")
               top = tkinter.Tk()
               top.withdraw()
-              tkinter.messagebox.showinfo("status van het spel", salarissen + verzekeringen, )
+              tkinter.messagebox.showinfo("status van het spel", salarissen + kinderen + verzekeringen, )
               top.destroy
 
         
