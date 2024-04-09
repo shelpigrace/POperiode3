@@ -4,6 +4,35 @@ import pygame, random  # imorteren van de pygame en random libraries
 import tkinter
 from tkinter import messagebox
 
+
+#---------- Functies ----------
+def verzekering(beurt):
+  if posities[beurt] in verzekeringPositie:
+    if posities[beurt] == 4:
+      verzekeringen.insert(beurt +1, " levens verzekering")
+      salarissen[beurt] -= 750
+      print("Speler", beurt, " heeft een levens verzekering en 750 euro minder. ", "Nieuwe salaris: ", + int(salarissen[beurt]))
+    elif posities[beurt] == 11:
+      verzekeringen[beurt] + (" reis verzekering")
+      salarissen[beurt] -= 500
+      print("Speler", beurt, " heeft een reis verzekering en 500 euro minder. ", "Nieuwe salaris: ", + int(salarissen[beurt]))
+    elif posities[beurt] == 20:
+      verzekeringen[beurt] + (" Auto verzekering")
+      salarissen[beurt] -= 1000
+      print("Speler", beurt, " heeft een auto verzekering en 1000 euro minder. ", "Nieuwe salaris: ", + int(salarissen[beurt]))
+    elif posities[beurt] == 26:
+      verzekeringen[beurt] + (" Brand verzekering")
+      salarissen[beurt] -= 1200
+      print("Speler", beurt, " heeft een brand verzekering en 1200 euro minder. ", "Nieuwe salaris: ", + int(salarissen[beurt]))
+    elif posities[beurt] == 33:
+      verzekeringen[beurt] + (" inboedel verzekering")
+      salarissen[beurt] -= 1350
+      print("Speler", beurt, " heeft een inboedel verekering en 1350 euro minder. ", "Nieuwe salaris: ", + int(saalarissen[beurt]))
+    elif posities[beurt] == 38:
+      verzekeringen[beurt] + (" overlijdensrisico verzekering")
+      salarissen[beurt] -= 680
+      print("Speler", beurt, " heeft een overlijdings verzekering en 680 euro minder. ", "Nieuwe salaris: ", + int(salarissen[beurt]))
+  
 # -------- Globale variabelen --------
 salarissen = [3000, 3000, 3000]
 
