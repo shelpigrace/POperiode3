@@ -7,7 +7,7 @@ from tkinter import messagebox
 # --------- Functies ---------
 
 def voeg_verzekering_toe(speler, positie):
-    global verzekeringen, salarissen, verzekeringstypes  # Definieer variabelen als globaal om ze in de functie te kunnen gebruiken
+    global verzekeringen, salarissen, verzekeringstypes  # Geef de variabelen als globaal aan om de functie ze te laten snappen :)
     if positie in verzekeringPositie:
         verzekering = verzekeringstypes.get(positie)
         if verzekering:
@@ -27,7 +27,7 @@ verzekeringen_geel = ["verzekeringen Geel: "]
 
 verzekeringen = [verzekeringen_groen, verzekeringen_blauw, verzekeringen_geel]
 
-# Definieer een dictionary voor verzekeringstypes
+#Lijst van welke verzekreingen er zijn 
 verzekeringstypes = {
     4: "Levensverzekering",
     11: "Reisverzekering",
@@ -118,15 +118,10 @@ while not done:
                   beurt = "geel"
                   print( "Beurt speler", beurt)
 
-                #verzekeringen per kleur, helaas niet in een functie want daar had in niet genoeg tijd voor :(
-                
-                
+                #verzekeringen per kleur, refereert nar de functie bovenin die voor iedereen het toevoegd 
                 voeg_verzekering_toe(huidige_speler_beurt, posities[huidige_speler_beurt])
 
-                if posities[huidige_speler_beurt] in salaris_positie:
-                                  salarissen[huidige_speler_beurt] += 2000
-                                  print(f"Speler {huidige_speler_beurt + 1} kreeg een salaris van 2000. "
-                                        f"Nieuwe salaris: {salarissen[huidige_speler_beurt]}")
+                
 
 
 
@@ -136,11 +131,15 @@ while not done:
 
                 if posities[huidige_speler_beurt] in kinderen_positie:
                   kinderen[huidige_speler_beurt] += 1 
+                  salarissen[huidige_speler_beurt] += 500
                   print ("Speler", huidige_speler_beurt,"heeft een kind gekregen. Aantal kinderen:" , + int(kinderen[huidige_speler_beurt]))
+                  print ("Ook heeft hij een kinderbijslag van 500 euro gekregen. Nieuwe salaris: ", + int(salarissen[huidige_speler_beurt]))
 
                 if posities[huidige_speler_beurt] in tweeling_positie:
                   kinderen[huidige_speler_beurt] += 2
+                  salarissen[huidige_speler_beurt] += 1200
                   print ("Speler", huidige_speler_beurt,"heeft een tweeling gekregen. Aantal kinderen:" , + int(kinderen[huidige_speler_beurt]))
+                  print ( "Speler", huidige_speler_beurt," heeft een kinderbijslag van 1200 euro gekregen. Nieuwe salaris: ", + int(salarissen[huidige_speler_beurt]))
 
 
                  
@@ -179,8 +178,15 @@ while not done:
             elif event.key == pygame.K_BACKSPACE: #backspace
 
                 print("Knop: Backspace")
-                huidige_speler_beurt = 0  # Terug naar speler 0 
-                posities = [0, 0, 0]  # Reset spelerposities naar begin
+              #reset van alle variabelen en stestieken
+                huidige_speler_beurt = 0   
+                posities = [0, 0, 0]  
+                salarissen = [3000, 3000, 3000]
+                kinderen = [0, 0, 0]
+                verzekeringen_groen = ["verzekeringen Groen: "]
+                verzekeringen_blauw = ["verzekeringen Blauw: "]
+                verzekeringen_geel = ["verzekeringen Geel: "]
+                print ("Het spel begint opnieuw")
 
 
           # venster voor tkinter
