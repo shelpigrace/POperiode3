@@ -1,52 +1,47 @@
 # PO periode 3 met twee amsterdammers en SLI, BITCHESSSSSSSSSSSSSSSSS
-from os import killpg
-import pygame, random  # imorteren van de pygame en random libraries
+import pygame
+import random
 import tkinter
 from tkinter import messagebox
 
+# --------- Functies ---------
 
-#---------- Functies ----------
-def verzekering(beurt):
-  if posities[beurt] in verzekeringPositie:
-    if posities[beurt] == 4:
-      verzekeringen.insert(beurt +1, " levens verzekering")
-      salarissen[beurt] -= 750
-      print("Speler", beurt, " heeft een levens verzekering en 750 euro minder. ", "Nieuwe salaris: ", + int(salarissen[beurt]))
-    elif posities[beurt] == 11:
-      verzekeringen[beurt] + (" reis verzekering")
-      salarissen[beurt] -= 500
-      print("Speler", beurt, " heeft een reis verzekering en 500 euro minder. ", "Nieuwe salaris: ", + int(salarissen[beurt]))
-    elif posities[beurt] == 20:
-      verzekeringen[beurt] + (" Auto verzekering")
-      salarissen[beurt] -= 1000
-      print("Speler", beurt, " heeft een auto verzekering en 1000 euro minder. ", "Nieuwe salaris: ", + int(salarissen[beurt]))
-    elif posities[beurt] == 26:
-      verzekeringen[beurt] + (" Brand verzekering")
-      salarissen[beurt] -= 1200
-      print("Speler", beurt, " heeft een brand verzekering en 1200 euro minder. ", "Nieuwe salaris: ", + int(salarissen[beurt]))
-    elif posities[beurt] == 33:
-      verzekeringen[beurt] + (" inboedel verzekering")
-      salarissen[beurt] -= 1350
-      print("Speler", beurt, " heeft een inboedel verekering en 1350 euro minder. ", "Nieuwe salaris: ", + int(saalarissen[beurt]))
-    elif posities[beurt] == 38:
-      verzekeringen[beurt] + (" overlijdensrisico verzekering")
-      salarissen[beurt] -= 680
-      print("Speler", beurt, " heeft een overlijdings verzekering en 680 euro minder. ", "Nieuwe salaris: ", + int(salarissen[beurt]))
-  
+def voeg_verzekering_toe(speler, positie):
+    global verzekeringen, salarissen, verzekeringstypes  # Definieer variabelen als globaal om ze in de functie te kunnen gebruiken
+    if positie in verzekeringPositie:
+        verzekering = verzekeringstypes.get(positie)
+        if verzekering:
+            verzekeringen[speler].append(verzekering)
+            salarissen[speler] -= 750  # Aanpassen van salaris
+            print(f"Speler {speler + 1} heeft een {verzekering} en 750 euro minder. "
+                  f"Nieuwe salaris: {salarissen[speler]}")
+
 # -------- Globale variabelen --------
-salarissen = [3000, 3000, 3000]
 
+salarissen = [3000, 3000, 3000]
 kinderen = [0, 0, 0]
 
-verzekeringen = ["Verzekeringen Groen: ", "Verzekeringen Blauw: ", "Verzekeringen Geel: "]
+verzekeringen_groen = ["verzekeringen Groen: "]
+verzekeringen_blauw = ["verzekeringen Blauw: "]
+verzekeringen_geel = ["verzekeringen Geel: "]
+
+verzekeringen = [verzekeringen_groen, verzekeringen_blauw, verzekeringen_geel]
+
+# Definieer een dictionary voor verzekeringstypes
+verzekeringstypes = {
+    4: "Levensverzekering",
+    11: "Reisverzekering",
+    20: "Autoverzekering",
+    26: "Brandverzekering",
+    33: "Inboedelverzekering",
+    38: "Overlijdensrisicoverzekering"
+}
 
 # coordinaten van de vakjes:
 vakjes = [[870,460], [870,380], [870, 315], [870,250], [870, 180], [870, 110],[795,70], [710,70], [710,142], [710,210], [710,280], [710, 348], [710, 415], [710, 478], [639,475], [562,475], [486, 475], [410, 475],[336, 475], [261, 475], [188, 475], [117,475], [70,410], [65,343], [65,270],[65, 206], [65,136], [86,68], [166,67], [240,67], [315,67],[387,67], [465,67], [509,144], [557,214], [570,285], [558,357],[475,382], [394,392], [305,396], [226,389], [156,319], [153,244],[163,174], [250,147], [340,150], [422,183], [453,260], [373,305],[270,285], [324,229]] # laatste coordinaat is van kleine vakje, moet nog worden aangepast!! 
 
 salaris_positie = [3,12,17,21,24,29,35,40,45]
-
 verzekeringPositie = [4,11,20,26,33,38]
-
 kinderen_positie = [5,7,10,14,16]
 tweeling_positie = [23]
 
@@ -101,8 +96,7 @@ while not done:
 
         if event.type == pygame.QUIT: # Gebeurtenis: het kruisje is aangeklikt
             done = True # Het spel moet eindigen dus we zetten done op True, zodat de loop straks stopt
-
-
+          
 
       
         elif event.type == pygame.KEYDOWN:
@@ -111,6 +105,28 @@ while not done:
                 print("Knop: Spatie")
                 worp = random.randint(1,10) #kies een random getal tussen 1 en 6 als dobbelsteenworp
                 posities[huidige_speler_beurt] += worp # verzet de pion die op dit moment aan de beurt is
+
+                if huidige_speler_beurt == 0:
+                 beurt = "groen"
+                 print("Beurt speler", beurt)
+
+                elif huidige_speler_beurt == 1:
+                  beurt = "blauw"
+                  print("Beurt speler", beurt)
+
+                elif huidige_speler_beurt == 2:
+                  beurt = "geel"
+                  print( "Beurt speler", beurt)
+
+                #verzekeringen per kleur, helaas niet in een functie want daar had in niet genoeg tijd voor :(
+                
+                
+                voeg_verzekering_toe(huidige_speler_beurt, posities[huidige_speler_beurt])
+
+                if posities[huidige_speler_beurt] in salaris_positie:
+                                  salarissen[huidige_speler_beurt] += 2000
+                                  print(f"Speler {huidige_speler_beurt + 1} kreeg een salaris van 2000. "
+                                        f"Nieuwe salaris: {salarissen[huidige_speler_beurt]}")
 
 
 
@@ -125,33 +141,12 @@ while not done:
                 if posities[huidige_speler_beurt] in tweeling_positie:
                   kinderen[huidige_speler_beurt] += 2
                   print ("Speler", huidige_speler_beurt,"heeft een tweeling gekregen. Aantal kinderen:" , + int(kinderen[huidige_speler_beurt]))
-              
-                #pop-up voor de verzekeringen
-                if posities[huidige_speler_beurt] in verzekeringPositie:
-                  if posities[huidige_speler_beurt] == 4:
-                    verzekeringen.insert(huidige_speler_beurt +1, " levens verzekering")
-                    salarissen[huidige_speler_beurt] -= 750
-                    print("Speler", huidige_speler_beurt, " heeft een levens verzekering en 750 euro minder. ", "Nieuwe salaris: ", + int(salarissen[huidige_speler_beurt]))
-                  elif posities[huidige_speler_beurt] == 11:
-                    verzekeringen[huidige_speler_beurt] + (" reis verzekering")
-                    salarissen[huidige_speler_beurt] -= 500
-                    print("Speler", huidige_speler_beurt, " heeft een reis verzekering en 500 euro minder. ", "Nieuwe salaris: ", + int(salarissen[huidige_speler_beurt]))
-                  elif posities[huidige_speler_beurt] == 20:
-                    verzekeringen[huidige_speler_beurt] + (" Auto verzekering")
-                    salarissen[huidige_speler_beurt] -= 1000
-                    print("Speler", huidige_speler_beurt, " heeft een auto verzekering en 1000 euro minder. ", "Nieuwe salaris: ", + int(salarissen[huidige_speler_beurt]))
-                  elif posities[huidige_speler_beurt] == 26:
-                    verzekeringen[huidige_speler_beurt] + (" Brand verzekering")
-                    salarissen[huidige_speler_beurt] -= 1200
-                    print("Speler", huidige_speler_beurt, " heeft een brand verzekering en 1200 euro minder. ", "Nieuwe salaris: ", + int(salarissen[huidige_speler_beurt]))
-                  elif posities[huidige_speler_beurt] == 33:
-                    verzekeringen[huidige_speler_beurt] + (" inboedel verzekering")
-                    salarissen[huidige_speler_beurt] -= 1350
-                    print("Speler", huidige_speler_beurt, " heeft een inboedel verekering en 1350 euro minder. ", "Nieuwe salaris: ", + int(saalarissen[huidige_speler_beurt]))
-                  elif posities[huidige_speler_beurt] == 38:
-                    verzekeringen[huidige_speler_beurt] + (" overlijdensrisico verzekering")
-                    salarissen[huidige_speler_beurt] -= 680
-                    print("Speler", huidige_speler_beurt, " heeft een overlijdings verzekering en 680 euro minder. ", "Nieuwe salaris: ", + int(salarissen[huidige_speler_beurt]))
+
+
+                 
+                  
+                
+
 
               
 
@@ -166,19 +161,25 @@ while not done:
                     else:
                       huidige_speler_beurt = huidige_speler_beurt
 
-                  
-
-                # heeft de speler nog niet gewonnen? Ga dan de beurt door naar de vol
+              # heeft de speler nog niet gewonnen? Ga dan de beurt door naar de vol
                 else:
                 # beurt wisselen    
                   huidige_speler_beurt = (huidige_speler_beurt + 1) % 3 
 
-                  
+              
+
+                
+    
+                
+              
+
+              
+                    
 
             elif event.key == pygame.K_BACKSPACE: #backspace
 
                 print("Knop: Backspace")
-                huidige_speler_beurt = 0  # Terug naar speler 0
+                huidige_speler_beurt = 0  # Terug naar speler 0 
                 posities = [0, 0, 0]  # Reset spelerposities naar begin
 
 
@@ -188,7 +189,7 @@ while not done:
               print("Knop: omlaag.")
               top = tkinter.Tk()
               top.withdraw()
-              tkinter.messagebox.showinfo("status van het spel", salarissen + kinderen + verzekeringen, )
+              tkinter.messagebox.showinfo("status van het spel", salarissen + kinderen + verzekeringen_groen + verzekeringen_blauw + verzekeringen_geel, )
               top.destroy
 
         
